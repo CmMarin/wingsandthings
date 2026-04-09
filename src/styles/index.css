@@ -2,3 +2,48 @@
 @import './tailwind.css';
 @import './theme.css';
 @import './accessibility.css';
+
+:root {
+	--site-body-font: "Manrope", sans-serif;
+	--site-display-font: "Anton", sans-serif;
+	--site-ru-body-font: "Noto Sans", sans-serif;
+	--site-ru-display-font: "Roboto Condensed", "Noto Sans", sans-serif;
+}
+
+body {
+	font-family: var(--site-body-font);
+}
+
+[data-lang="RU"] {
+	font-family: var(--site-ru-body-font);
+}
+
+[data-lang="RU"] [class*="font-['Anton']"],
+[data-lang="RU"] [class*="font-['Teko']"] {
+	font-family: var(--site-ru-display-font) !important;
+	letter-spacing: 0.01em;
+	word-break: normal;
+	overflow-wrap: anywhere;
+}
+
+.ru-mode .menu-display-title,
+.ru-mode .menu-modal-title {
+	font-family: var(--site-ru-display-font) !important;
+	letter-spacing: 0;
+	line-height: 0.92;
+	word-break: normal;
+	overflow-wrap: anywhere;
+	text-wrap: balance;
+}
+
+.ru-mode .menu-display-title {
+	font-size: clamp(1.25rem, 2.35vw, 2.15rem) !important;
+}
+
+.ru-mode .menu-modal-title {
+	font-size: clamp(1.45rem, 3.0vw, 3.35rem) !important;
+}
+
+[data-lang="RU"] [class*="font-['Manrope']"] {
+	font-family: var(--site-ru-body-font) !important;
+}

@@ -6,7 +6,7 @@ function DarkGrittyFireBackground() {
   return (
     <div className="absolute inset-0 opacity-30" data-name="Dark gritty fire background">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <img alt="" className="absolute h-[139.73%] left-0 max-w-none top-[-19.87%] w-full" src={imgDarkGrittyFireBackground} />
+        <img alt="" className="absolute inset-0 h-full w-full object-cover object-center scale-[1.08]" src={imgDarkGrittyFireBackground} />
       </div>
     </div>
   );
@@ -95,8 +95,8 @@ function Svg() {
 function Heading1() {
   return (
     <div className="content-stretch flex flex-col items-center relative shrink-0 z-20" data-name="Heading 2">
-      <div className="flex flex-col font-['Teko'] font-bold justify-center relative shrink-0 text-[#ff4500] text-3xl md:text-5xl text-center tracking-[0.2em] uppercase whitespace-nowrap mb-6">
-        <span className="bg-black/60 px-4 py-2 border-2 border-[#ff4500]/50 backdrop-blur-sm">Born in Fire. Forged in Flavor.</span>
+      <div className="flex flex-col font-['Teko'] font-bold justify-center relative shrink-0 text-[#ff4500] text-sm sm:text-2xl md:text-5xl text-center tracking-[0.14em] uppercase whitespace-normal sm:whitespace-nowrap max-w-[18rem] sm:max-w-none leading-tight mb-6 px-3">
+        <span className="bg-black/60 px-4 py-2 border-2 border-[#ff4500]/50 backdrop-blur-sm">Craft Beer | Hot wings | Good company</span>
       </div>
     </div>
   );
@@ -114,7 +114,7 @@ function Container1() {
   return (
     <div className="flex flex-col items-center relative w-full mb-4 md:-mb-2" data-name="Container">
       <h1 className="font-['Anton'] text-[45px] sm:text-[80px] md:text-[180px] leading-none text-white tracking-tight uppercase text-center drop-shadow-2xl">
-        Obliterate
+        Hottest Wings
       </h1>
     </div>
   );
@@ -124,7 +124,7 @@ function Container2() {
   return (
     <div className="flex flex-col items-center relative w-full mb-2" data-name="Container">
       <h1 className="font-['Anton'] text-[45px] sm:text-[80px] md:text-[180px] leading-none text-[#ff4500] tracking-tight uppercase text-center drop-shadow-2xl mix-blend-screen opacity-90 inline-block relative">
-        Your Senses
+        in Chișinău
         <div className="absolute top-[60%] left-0 w-full h-[6px] bg-[#ff4500] rotate-[-2deg] opacity-70 z-[-1]" />
       </h1>
     </div>
@@ -159,7 +159,11 @@ function Margin() {
 function Container5() {
   return (
     <div className="flex flex-col items-center relative z-20" data-name="Container">
-      <button className="px-10 py-5 bg-[#ff4500] hover:bg-[#ff1a1a] text-black font-['Teko'] text-3xl font-bold uppercase tracking-wider transform hover:-translate-y-1 transition-all shadow-[8px_8px_0px_#000] border-2 border-black hover:shadow-[12px_12px_0px_#000]">
+      <button
+        type="button"
+        onClick={() => document.getElementById("menu")?.scrollIntoView({ behavior: "smooth", block: "start" })}
+        className="px-8 py-4 sm:px-10 sm:py-5 bg-[#ff4500] hover:bg-[#ff1a1a] text-black font-['Teko'] text-2xl sm:text-3xl font-bold uppercase tracking-wider transform hover:-translate-y-1 transition-all shadow-[8px_8px_0px_#000] border-2 border-black hover:shadow-[12px_12px_0px_#000]"
+      >
         View Menu
       </button>
     </div>
@@ -329,9 +333,9 @@ export default function HeaderHeroSection() {
         />
       </div>
 
-      <div className="absolute bottom-[88px] flex flex-col font-['Teko'] font-bold justify-center leading-none left-1/2 -translate-x-1/2 right-auto opacity-70 text-[#ff4500] text-xl tracking-[0.3em] uppercase z-20">
+      {/* <div className="absolute bottom-[88px] flex flex-col font-['Teko'] font-bold justify-center leading-none left-1/2 -translate-x-1/2 right-auto opacity-70 text-[#ff4500] text-xl tracking-[0.3em] uppercase z-20">
         <span className="bg-black border border-[#ff4500]/30 px-6 py-2 shadow-[4px_4px_0px_#ff4500]">Scroll or Die</span>
-      </div>
+      </div> */}
       
       <div className="z-10 relative flex flex-col items-center justify-center">
         <Container />

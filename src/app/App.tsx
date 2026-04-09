@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform, useSpring, useInView, AnimatePresence 
 import HeaderHeroSection from "../imports/HeaderHeroSection/HeaderHeroSection";
 import { ImageWithFallback } from "./components/figma/ImageWithFallback";
 import { Menu, X, Flame, Zap, Skull, Gamepad2, Palette, ShoppingBag, Users, Info, DollarSign } from "lucide-react";
+import { categoryLabel, menuDesc, menuName, sauceDescription, sauceLevel, translate, uiCopy, variantLabel } from "./i18n";
 
 const menu: Record<string, any[]> = {
   wings: [
@@ -41,7 +42,7 @@ const menu: Record<string, any[]> = {
     { name: "Beermaster Golden Lager", category: "Beer", img: "https://images.unsplash.com/photo-1535958636474-b021ce487661?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpZGVhbCUyMGJlZXJ8ZW58MXx8fHwxNzc1Njc5ODc5fDA&ixlib=rb-4.1.0&q=80&w=1080", variants: [{ label: "0.3L", price: "30 MDL" }, { label: "0.4L", price: "40 MDL" }, { label: "0.5L", price: "50 MDL" }] },
     { name: "Beermaster Classic Kvass", category: "Soft drinks", img: "https://images.unsplash.com/photo-1538481199042-4852facbfdb2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHw5fHxpZGVhbCUyMGJlZXJ8ZW58MXx8fHwxNzc1Njc5ODc5fDA&ixlib=rb-4.1.0&q=80&w=1080", variants: [{ label: "0.3L", price: "30 MDL" }, { label: "0.4L", price: "35 MDL" }, { label: "0.5L", price: "40 MDL" }] },
     { name: "Beermaster Cider Caru' cu Mere", category: "Cider", img: "https://images.unsplash.com/photo-1538481199042-4852facbfdb2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHw5fHxpZGVhbCUyMGJlZXJ8ZW58MXx8fHwxNzc1Njc5ODc5fDA&ixlib=rb-4.1.0&q=80&w=1080", variants: [{ label: "0.3L", price: "30 MDL" }, { label: "0.4L", price: "40 MDL" }, { label: "0.5L", price: "50 MDL" }] },
-    { name: "Labrewtory", category: "Beer", img: "https://images.unsplash.com/photo-1535958636474-b021ce487661?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpZGVhbCUyMGJlZXJ8ZW58MXx8fHwxNzc1Njc5ODc5fDA&ixlib=rb-4.1.0&q=80&w=1080", variants: [{ label: "Flying Mamaliga", price: "65 MDL" }, { label: "American Amber Ale", price: "65 MDL" }, { label: "American Pale Ale", price: "65 MDL" }, { label: "Brut IPA", price: "65 MDL" }, { label: "Irish Stout", price: "65 MDL" }] },
+    { name: "Labrewtory", category: "Beer", img: "https://images.unsplash.com/photo-1535958636474-b021ce487661?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpZGVhbCUyMGJlZXJ8ZW58MXx8fHwxNzc1Njc5ODc5fDA&ixlib=rb-4.1.0&q=80&w=1080", variants: [{ label: "Flying Mămăligă", price: "65 MDL" }, { label: "American Amber Ale", price: "65 MDL" }, { label: "American Pale Ale", price: "65 MDL" }, { label: "Brut IPA", price: "65 MDL" }, { label: "Irish Stout", price: "65 MDL" }] },
     { name: "Keller-Holz", category: "Beer", img: "https://images.unsplash.com/photo-1535958636474-b021ce487661?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpZGVhbCUyMGJlZXJ8ZW58MXx8fHwxNzc1Njc5ODc5fDA&ixlib=rb-4.1.0&q=80&w=1080", variants: [{ label: "0.5L Munich Helles", price: "60 MDL" }, { label: "0.5L Weissbier", price: "60 MDL" }, { label: "0.3L IPA", price: "60 MDL" }, { label: "0.3L Alkoholfrei", price: "60 MDL" }] },
     { name: "Vin (Pahar)", category: "Wine", img: "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwyfHx3aW5lJTIwZ2xhc3N8ZW58MXx8fDE3NzU2ODkwMzB8MA&ixlib=rb-4.1.0&q=80&w=1080", variants: [{ label: "Roșu, Merlot", price: "50 MDL" }, { label: "Rose, Malbec", price: "50 MDL" }, { label: "Alb, Chardonnay", price: "50 MDL" }] },
     { name: "Băuturi Răcoritoare 0.3L", category: "Soft drinks", img: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwyfHxzcml0ZXxlbnwxfHx8fDE3NzU2ODkwOTV8MA&ixlib=rb-4.1.0&q=80&w=1080", variants: [{ label: "Coca-Cola", price: "30 MDL" }, { label: "Sprite", price: "30 MDL" }, { label: "Fanta", price: "30 MDL" }] },
@@ -55,9 +56,9 @@ const bestSellers = menu.wings.filter((item) => item.bestSeller);
 const mainMenuDisplay = bestSellers.length ? bestSellers : menu.wings.slice(0, 6);
 
 const arcadeGames = [
-  { name: "Street Fighter II", available: true, type: "Fighting" },
-  { name: "Pac-Man", available: true, type: "Arcade Classic" },
-  { name: "Mortal Kombat", available: false, type: "Fighting" },
+  // { name: "Street Fighter II", available: true, type: "Fighting" },
+  // { name: "Pac-Man", available: true, type: "Arcade Classic" },
+  // { name: "Mortal Kombat", available: false, type: "Fighting" },
   { name: "Catan", available: true, type: "Board Game" },
   { name: "Cards Against Humanity", available: true, type: "Board Game" },
   { name: "Jenga XL", available: true, type: "Party Game" },
@@ -88,204 +89,52 @@ const artPieces = [
 ];
 
 const t = {
-  "navMenu": {
-    "EN": "Menu",
-    "RO": "Meniu",
-    "RU": "Меню"
-  },
-  "navSauces": {
-    "EN": "Sauces",
-    "RO": "Sosuri",
-    "RU": "Соусы"
-  },
-  "navArcade": {
-    "EN": "Arcade",
-    "RO": "Jocuri",
-    "RU": "Игры"
-  },
-  "navArt": {
-    "EN": "Art",
-    "RO": "Artă",
-    "RU": "Искусство"
-  },
-  "navLocation": {
-    "EN": "Location",
-    "RO": "Locație",
-    "RU": "Локация"
-  },
-  "theMeat": {
-    "EN": "THE MEAT",
-    "RO": "CARNEA",
-    "RU": "МЯСО"
-  },
-  "bestSellersTitle": {
-    "EN": "Best Sellers",
-    "RO": "Cele mai Vândute",
-    "RU": "Хиты Продаж"
-  },
-  "chooseWeapon": {
-    "EN": "Choose your weapon. Each wing is a riff, each bite is a breakdown. No compromises.",
-    "RO": "Alege-ți arma. Fiecare aripioară e un riff, fiecare mușcătură e un breakdown. Fără compromisuri.",
-    "RU": "Выбирай оружие. Каждое крылышко - это рифф, каждый укус - брейкдаун. Без компромиссов."
-  },
-  "openFullMenu": {
-    "EN": "Open Full Menu",
-    "RO": "Deschide Meniul Complet",
-    "RU": "Открыть Полное Меню"
-  },
-  "sauceMenuTitle1": {
-    "EN": "Sauce",
-    "RO": "Lab.",
-    "RU": "Лаб."
-  },
-  "sauceMenuTitle2": {
-    "EN": "Lab",
-    "RO": "Sosuri",
-    "RU": "Соусов"
-  },
-  "sauceLabDesc": {
-    "EN": "Handcrafted heat levels from mild to absolutely unhinged. Find your threshold.",
-    "RO": "Niveluri de iuțeală artizanale, de la blând la absolut nebunesc. Găsește-ți limita.",
-    "RU": "Крафтовые уровни остроты от мягких до абсолютно безумных. Найди свой предел."
-  },
-  "wingGamesTitle1": {
-    "EN": "Wing",
-    "RO": "Jocuri",
-    "RU": "Игры"
-  },
-  "wingGamesTitle2": {
-    "EN": "Games",
-    "RO": "Aripioare",
-    "RU": "Крылышек"
-  },
-  "wingGamesDesc": {
-    "EN": "Board Games & Battles",
-    "RO": "Jocuri de Societate și Bătălii",
-    "RU": "Настольные Игры и Битвы"
-  },
-  "wingGamesSub": {
-    "EN": "Find a rival or make a truce. Play our games or bring your own. The victor takes the glory. The loser buys the next round.",
-    "RO": "Găsește un rival sau faceți pace. Joacă jocurile noastre sau adu-le pe ale tale. Învingătorul ia gloria. Pierzătorul cumpără următorul rând.",
-    "RU": "Найди соперника или заключи перемирие. Играй в наши игры или приноси свои. Победитель забирает славу. Проигравший покупает следующий раунд."
-  },
-  "noQuarters": {
-    "EN": "NO QUARTERS NEEDED",
-    "RO": "FĂRĂ FISE",
-    "RU": "МОНЕТЫ НЕ НУЖНЫ"
-  },
-  "artWallTitle1": {
-    "EN": "Art",
-    "RO": "Peretele",
-    "RU": "Стена"
-  },
-  "artWallTitle2": {
-    "EN": "Wall",
-    "RO": "Arte",
-    "RU": "Искусства"
-  },
-  "gallerySpace": {
-    "EN": "Gallery Space",
-    "RO": "Spațiu de Galerie",
-    "RU": "Галерея"
-  },
-  "artWallDesc": {
-    "EN": "Local artists only. Raw talent, unfiltered expression. 100% of sales go to the creators. Keep the scene alive.",
-    "RO": "Doar artiști locali. Talent pur, expresie nefiltrată. 100% din vânzări merg la creatori. Păstrează scena vie.",
-    "RU": "Только местные художники. Чистый талант, нефильтрованное самовыражение. 100% продаж идут создателям. Сохраняй сцену живой."
-  },
-  "spotOnWall": {
-    "EN": "Want a spot on the wall?",
-    "RO": "Vrei un loc pe perete?",
-    "RU": "Хочешь место на стене?"
-  },
-  "submitPortfolio": {
-    "EN": "Submit your portfolio. We swap artists monthly.",
-    "RO": "Trimite portofoliul. Schimbăm artiștii lunar.",
-    "RU": "Отправь свое портфолио. Мы меняем художников каждый месяц."
-  },
-  "submitSpecs": {
-    "EN": "Submit Specs",
-    "RO": "Trimite Specificații",
-    "RU": "Отправить Заявку"
-  },
-  "findThePitTitle": {
-    "EN": "Find The Pit",
-    "RO": "Găsește Groapa",
-    "RU": "Найди Яму"
-  },
-  "open7Days": {
-    "EN": "Open 7 days. Late nights. Loud music.",
-    "RO": "Deschis 7 zile. Nopți târzii. Muzică tare.",
-    "RU": "Открыто 7 дней. Поздние ночи. Громкая музыка."
-  },
-  "getDirections": {
-    "EN": "Get Directions",
-    "RO": "Obține Indicații",
-    "RU": "Проложить Маршрут"
-  },
-  "callBar": {
-    "EN": "Call the Bar",
-    "RO": "Sună la Bar",
-    "RU": "Позвонить в Бар"
-  },
-  "bornInFire": {
-    "EN": "Born in fire.",
-    "RO": "Născut în foc.",
-    "RU": "Рожденный в огне."
-  },
-  "forgedFlavor": {
-    "EN": "Forged in flavor.",
-    "RO": "Făurit din savoare.",
-    "RU": "Выкованный во вкусе."
-  },
-  "noCorpBs": {
-    "EN": "No corporate bullshit.",
-    "RO": "Fără vrăjeli corporatiste.",
-    "RU": "Никакой корпоративной ерунды."
-  },
-  "hours": {
-    "EN": "Hours",
-    "RO": "Program",
-    "RU": "Часы работы"
-  },
-  "social": {
-    "EN": "Social",
-    "RO": "Social Media",
-    "RU": "Соцсети"
-  },
-  "monThu": {
-    "EN": "Mon-Thu",
-    "RO": "Luni-Joi",
-    "RU": "Пн-Чт"
-  },
-  "friSat": {
-    "EN": "Fri-Sat",
-    "RO": "Vin-Sâm",
-    "RU": "Пт-Сб"
-  },
-  "sun": {
-    "EN": "Sun",
-    "RO": "Dum",
-    "RU": "Вс"
-  },
-  "rights": {
-    "EN": "© 2026 Wings & Things. All rights reserved. Do not copy our vibes.",
-    "RO": "© 2026 Wings & Things. Toate drepturile rezervate. Nu ne copiați vibe-ul.",
-    "RU": "© 2026 Wings & Things. Все права защищены. Не копируйте наш вайб."
-  },
-    "addToRound": { "EN": "Add to Round", "RO": "Adaugă la Comandă", "RU": "Добавить в Заказ" },
-  "yourRound": { "EN": "Your Round", "RO": "Comanda Ta", "RU": "Твой Заказ" },
-  "summonWaiter": { "EN": "Summon Waiter", "RO": "Cheamă Ospătarul", "RU": "Позвать Официанта" },
-  "emptyRound": { "EN": "Your round is empty. Pick a weapon.", "RO": "Comanda e goală. Alege o armă.", "RU": "Ваш заказ пуст. Выбери оружие." },
-  "qty": { "EN": "QTY", "RO": "CANT", "RU": "КОЛ-ВО" },
-  "total": { "EN": "TOTAL", "RO": "TOTAL", "RU": "ИТОГО" },
-  "sendIt": { "EN": "SEND IT TO THE PIT", "RO": "TRIMITE LA GROAPĂ", "RU": "ОТПРАВИТЬ В ЯМУ" },
-  "remove": { "EN": "X", "RO": "X", "RU": "X" },
-  "noWeakSauce": {
-    "EN": "NO WEAK SAUCE",
-    "RO": "FĂRĂ SOS SLAB",
-    "RU": "НИКАКОГО СЛАБОГО СОУСА"
-  }
+  navMenu: { EN: "Menu", RO: "Meniu", RU: "Меню" },
+  navSauces: { EN: "Sauces", RO: "Sosuri", RU: "Соусы" },
+  navArcade: { EN: "Arcade", RO: "Jocuri", RU: "Игры" },
+  navArt: { EN: "Art", RO: "Artă", RU: "Искусство" },
+  navLocation: { EN: "Location", RO: "Locație", RU: "Локация" },
+  theMeat: { EN: "Wings", RO: "Aripioare", RU: "Крылышки" },
+  bestSellersTitle: { EN: "Best Sellers", RO: "Cele mai vândute", RU: "Хиты продаж" },
+  chooseWeapon: { EN: "Choose your weapon. Each wing is a riff, each bite is a breakdown. No compromises.", RO: "Alege-ți arma. Fiecare aripioară e un riff, fiecare mușcătură e un breakdown. Fără compromisuri.", RU: "Выбирай оружие. Каждое крылышко - это рифф, каждый укус - брейкдаун. Без компромиссов." },
+  openFullMenu: { EN: "Open Full Menu", RO: "Deschide Meniul Complet", RU: "Открыть Полное Меню" },
+  sauceMenuTitle1: { EN: "Sauce", RO: "Sos", RU: "Соус" },
+  sauceMenuTitle2: { EN: "Lab", RO: "Lab", RU: "Лаб" },
+  sauceLabDesc: { EN: "Handcrafted heat levels from mild to absolutely unhinged. Find your threshold.", RO: "Niveluri de iuțeală artizanale, de la blând la absolut nebunesc. Găsește-ți limita.", RU: "Крафтовые уровни остроты, от мягкого до абсолютно безумного. Найди свой предел." },
+  wingGamesTitle1: { EN: "Wing", RO: "Wing", RU: "Wing" },
+  wingGamesTitle2: { EN: "Games", RO: "Games", RU: "Games" },
+  wingGamesDesc: { EN: "Board Games & Battles", RO: "Jocuri de societate și bătălii", RU: "Настольные игры и битвы" },
+  wingGamesSub: { EN: "Find a rival or make a truce. Play our games or bring your own. The victor takes the glory. The loser buys the next round.", RO: "Găsește un rival sau faceți pace. Joacă jocurile noastre sau adu-le pe ale tale. Învingătorul ia gloria. Pierzătorul cumpără următorul rând.", RU: "Найди соперника или заключи перемирие. Играй в наши игры или приноси свои. Победитель забирает славу. Проигравший покупает следующий раунд." },
+  noQuarters: { EN: "NO QUARTERS NEEDED", RO: "FĂRĂ FIȘE", RU: "БЕЗ МОНЕТ" },
+  artWallTitle1: { EN: "Art", RO: "Artă", RU: "Искусство" },
+  artWallTitle2: { EN: "Wall", RO: "Perete", RU: "Стена" },
+  gallerySpace: { EN: "Gallery Space", RO: "Galerie", RU: "Галерея" },
+  artWallDesc: { EN: "Local artists only. Raw talent, unfiltered expression. 100% of sales go to the creators. Keep the scene alive.", RO: "Doar artiști locali. Talent pur, expresie nefiltrată. 100% din vânzări merg la creatori. Păstrează scena vie.", RU: "Только местные художники. Сырой талант, нефильтрованное выражение. 100% продаж идут авторам. Сохраняй сцену живой." },
+  spotOnWall: { EN: "Want a spot on the wall?", RO: "Vrei un loc pe perete?", RU: "Хочешь место на стене?" },
+  submitPortfolio: { EN: "Submit your portfolio. We swap artists monthly.", RO: "Trimite portofoliul. Schimbăm artiștii lunar.", RU: "Отправь портфолио. Мы меняем художников каждый месяц." },
+  submitSpecs: { EN: "Submit Specs", RO: "Trimite Specificații", RU: "Отправить заявку" },
+  findThePitTitle: { EN: "Find The Place", RO: "Găsește-ne", RU: "Найди нас" },
+  open7Days: { EN: "Open 7 days. Late nights. Loud music.", RO: "Deschis 7 zile. Nopți târzii. Muzică tare.", RU: "Открыто 7 дней. Поздние ночи. Громкая музыка." },
+  getDirections: { EN: "Get Directions", RO: "Obține Indicații", RU: "Проложить маршрут" },
+  callBar: { EN: "Call the Bar", RO: "Sună la Bar", RU: "Позвонить в бар" },
+  bornInFire: { EN: "Born in fire.", RO: "Născut în foc.", RU: "Рожденный в огне." },
+  forgedFlavor: { EN: "Forged in flavor.", RO: "Făurit din savoare.", RU: "Выкован во вкусе." },
+  noCorpBs: { EN: "No corporate bullshit.", RO: "Fără vrăjeli corporatiste.", RU: "Никакой корпоративной ерунды." },
+  hours: { EN: "Hours", RO: "Program", RU: "Часы работы" },
+  social: { EN: "Social", RO: "Rețele sociale", RU: "Соцсети" },
+  monThu: { EN: "Mon-Thu", RO: "Luni-Joi", RU: "Пн-Чт" },
+  friSat: { EN: "Fri-Sat", RO: "Vin-Sâm", RU: "Пт-Сб" },
+  sun: { EN: "Sun", RO: "Dum", RU: "Вс" },
+  rights: { EN: "© 2026 Wings & Things. All rights reserved. Do not copy our vibes.", RO: "© 2026 Wings & Things. Toate drepturile rezervate. Nu ne copiați vibe-ul.", RU: "© 2026 Wings & Things. Все права защищены. Не копируйте наш вайб." },
+  addToRound: { EN: "Add to Round", RO: "Adaugă la Comandă", RU: "Добавить в Заказ" },
+  yourRound: { EN: "Your Round", RO: "Comanda Ta", RU: "Ваш Заказ" },
+  summonWaiter: { EN: "Summon Waiter", RO: "Cheamă Ospătarul", RU: "Позвать Официанта" },
+  emptyRound: { EN: "Your round is empty. Pick a weapon.", RO: "Comanda e goală. Alege o armă.", RU: "Ваш заказ пуст. Выбери оружие." },
+  qty: { EN: "QTY", RO: "CANT", RU: "КОЛ-ВО" },
+  total: { EN: "TOTAL", RO: "TOTAL", RU: "ИТОГО" },
+  sendIt: { EN: "SEND IT TO THE KITCHEN", RO: "TRIMITE BUCĂTĂRIEI", RU: "ОТПРАВЬ НА КУХНЮ" },
+  remove: { EN: "X", RO: "X", RU: "X" },
+  noWeakSauce: { EN: "THE HOTTEST", RO: "CEL MAI IUTE", RU: "САМЫЙ ОСТРЫЙ" }
 };
 
 type Lang = "EN" | "RO" | "RU";
@@ -295,11 +144,14 @@ export default function App() {
   const [selectedWing, setSelectedWing] = useState<any | null>(null);
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
   const [fullMenuOpen, setFullMenuOpen] = useState(false);
+  const [fullMenuFilter, setFullMenuFilter] = useState<string>("all");
   const [selectedArt, setSelectedArt] = useState<typeof artPieces[0] | null>(null);
 
   const [currentLang, setCurrentLang] = useState<Lang>("EN");
   const [tray, setTray] = useState<any[]>([]);
   const [trayOpen, setTrayOpen] = useState(false);
+
+  const tr = (copy: Record<Lang, string>) => translate(copy, currentLang);
 
   const addToTray = (item: any) => {
     setTray(prev => {
@@ -326,6 +178,7 @@ export default function App() {
   const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
   const heroScale = useTransform(smoothProgress, [0, 0.2], [1, 1.15]);
   const heroOpacity = useTransform(smoothProgress, [0, 0.3], [1, 0]);
+  const visibleFullMenuEntries = Object.entries(menu).filter(([categoryKey]) => fullMenuFilter === "all" || categoryKey === fullMenuFilter);
 
   useEffect(() => {
     if (menuOpen || selectedWing || fullMenuOpen || selectedArt) {
@@ -336,7 +189,7 @@ export default function App() {
   }, [menuOpen, selectedWing, fullMenuOpen, selectedArt]);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-[#f3f4f6] overflow-x-hidden relative">
+    <div className={`min-h-screen bg-[#0a0a0a] text-[#f3f4f6] overflow-x-hidden relative ${currentLang === "RU" ? "ru-mode" : ""}`} data-lang={currentLang}>
       <svg className="pointer-events-none fixed inset-0 z-50 h-full w-full opacity-[0.03] mix-blend-overlay">
         <filter id="noise">
           <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch" />
@@ -396,19 +249,29 @@ export default function App() {
         initial={false}
         animate={menuOpen ? { x: 0 } : { x: "100%" }}
         transition={{ type: "spring", stiffness: 300, damping: 30 }}
-        className="fixed inset-y-0 right-0 w-full bg-black z-40 md:hidden flex flex-col items-center justify-center gap-8"
+        className="fixed inset-y-0 right-0 w-full bg-black z-40 md:hidden flex flex-col items-center justify-center px-6"
       >
-        {[ { id: "menu", label: t.navMenu[currentLang] }, { id: "sauces", label: t.navSauces[currentLang] }, { id: "arcade", label: t.navArcade[currentLang] }, { id: "art", label: t.navArt[currentLang] }, { id: "location", label: t.navLocation[currentLang] } ].map((item, i) => (
-          <motion.a
-            key={item.id}
-            href={`#${item.id}`}
-            initial={{ opacity: 0, x: 50 }}
-            animate={menuOpen ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
-            transition={{ delay: i * 0.1 }}
-            onClick={() => setMenuOpen(false)}
-            className="font-['Teko'] text-5xl font-bold text-[#f3f4f6] hover:text-[#ff4500] transition-colors"
-          >{item.label}</motion.a>
-        ))}
+        <div className="flex flex-col items-center justify-center gap-8">
+          {[ { id: "menu", label: t.navMenu[currentLang] }, { id: "sauces", label: t.navSauces[currentLang] }, { id: "arcade", label: t.navArcade[currentLang] }, { id: "art", label: t.navArt[currentLang] }, { id: "location", label: t.navLocation[currentLang] } ].map((item, i) => (
+            <motion.a
+              key={item.id}
+              href={`#${item.id}`}
+              initial={{ opacity: 0, x: 50 }}
+              animate={menuOpen ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+              transition={{ delay: i * 0.1 }}
+              onClick={() => setMenuOpen(false)}
+              className="font-['Teko'] text-5xl font-bold text-[#f3f4f6] hover:text-[#ff4500] transition-colors"
+            >{item.label}</motion.a>
+          ))}
+
+          <div className="mt-4 flex items-center justify-center gap-3 border-t-2 border-gray-800 pt-6 font-['Anton'] text-2xl tracking-widest">
+            <button onClick={() => setCurrentLang('RO')} className={`transition-colors ${currentLang === 'RO' ? 'text-[#ff4500]' : 'text-gray-500 hover:text-[#f3f4f6]'}`}>RO</button>
+            <span className="text-gray-700">/</span>
+            <button onClick={() => setCurrentLang('EN')} className={`transition-colors ${currentLang === 'EN' ? 'text-[#ff4500]' : 'text-gray-500 hover:text-[#f3f4f6]'}`}>EN</button>
+            <span className="text-gray-700">/</span>
+            <button onClick={() => setCurrentLang('RU')} className={`transition-colors ${currentLang === 'RU' ? 'text-[#ff4500]' : 'text-gray-500 hover:text-[#f3f4f6]'}`}>RU</button>
+          </div>
+        </div>
       </motion.div>
 
       
@@ -466,7 +329,10 @@ export default function App() {
                   <div key={idx} className="bg-black border-2 border-gray-800 p-4 flex gap-4 items-center group hover:border-[#ff4500] transition-colors relative">
                     <img src={item.img} className="w-20 h-20 object-cover border border-gray-800 filter contrast-125 saturate-125" />
                     <div className="flex-1">
-                      <h4 className="font-['Teko'] text-2xl font-bold text-[#f3f4f6] uppercase leading-none mb-1">{item.name}</h4>
+                      <h4 className="font-['Teko'] text-2xl font-bold text-[#f3f4f6] uppercase leading-none mb-1">{menuName(item.name, currentLang)}</h4>
+                      {item.variantLabel && (
+                        <p className="font-['Manrope'] text-xs font-bold text-gray-500 uppercase tracking-widest">{variantLabel(item.variantLabel, currentLang)}</p>
+                      )}
                       <p className="font-['Manrope'] text-sm font-bold text-[#ff4500] uppercase tracking-widest">{item.variants?.[0]?.price || item.price}</p>
                     </div>
                     
@@ -487,7 +353,7 @@ export default function App() {
               <div className="p-6 sm:p-8 bg-black border-t-4 border-gray-800 relative z-10">
                 <button 
                   onClick={() => {
-                    alert('Order Sent to the Pit!');
+                    alert(`${t.sendIt[currentLang]}!`);
                     setTray([]);
                     setTrayOpen(false);
                   }}
@@ -509,21 +375,21 @@ export default function App() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setSelectedWing(null)}
-            className="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 flex items-center justify-center p-6 overflow-y-auto"
+            className="fixed inset-0 bg-black/90 backdrop-blur-sm z-[60] flex items-center justify-center p-2 sm:p-6 overflow-y-auto overflow-x-hidden"
           >
             <motion.div
               initial={{ scale: 0.95, y: 30 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.95, y: 30 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-[#0a0a0a] border-4 border-black max-w-4xl w-full relative overflow-visible shadow-[15px_15px_0px_#ff4500]"
+              className="bg-[#0a0a0a] border-4 border-black w-full max-w-4xl max-h-[calc(100vh-1rem)] sm:max-h-[calc(100vh-3rem)] overflow-y-auto overflow-x-hidden relative shadow-[15px_15px_0px_#ff4500]"
             >
               <button
                 onClick={() => setSelectedWing(null)}
-                className="absolute -top-6 -right-6 z-20 bg-[#ff4500] p-4 hover:bg-[#ff4500] hover:text-black hover:rotate-90 transition-all border-2 border-black"
-                title="Close"
+                className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 bg-[#ff4500] w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center hover:bg-[#ff4500] hover:text-black hover:rotate-90 transition-all border-2 border-black shadow-[4px_4px_0_#000]"
+                title={tr(uiCopy.close)}
               >
-                <X className="text-black" size={32} />
+                <X className="text-black" size={20} />
               </button>
 
               <div className="grid md:grid-cols-2 relative">
@@ -531,7 +397,7 @@ export default function App() {
                 {/* Visual texture overlay over entire modal */}
                 <div className="absolute inset-0 pointer-events-none mix-blend-overlay opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] z-10" />
 
-                <div className="relative h-96 md:h-auto border-r-2 border-gray-900 bg-black flex items-center justify-center p-8 overflow-hidden group">
+                <div className="relative h-56 sm:h-96 md:h-auto border-r-2 border-gray-900 bg-black flex items-center justify-center p-3 sm:p-8 overflow-hidden group">
                   <div className="absolute inset-0 bg-[#e63946] mix-blend-multiply opacity-40 z-0"></div>
                   <img
                     src={selectedWing.img}
@@ -543,57 +409,57 @@ export default function App() {
                   <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-black/80 to-black z-20 pointer-events-none" />
                 </div>
 
-                <div className="p-10 relative z-20">
-                  <div className="mb-6 flex justify-between items-start">
+                <div className="p-4 sm:p-10 relative z-20">
+                  <div className="mb-4 sm:mb-6 flex justify-between items-start">
                     <div>
-                      <span className="font-['Manrope'] text-xs font-extrabold tracking-[0.3em] text-gray-500 uppercase block mb-2">Item Docs</span>
-                      <h2 className="font-['Anton'] text-4xl sm:text-5xl md:text-6xl uppercase tracking-tighter text-[#f3f4f6] leading-[0.9]">
-                        {selectedWing.name}
+                      <span className="font-['Manrope'] text-[10px] sm:text-xs font-extrabold tracking-[0.3em] text-gray-500 uppercase block mb-2">{tr(uiCopy.itemDocs)}</span>
+                      <h2 className="menu-modal-title font-['Anton'] text-2xl sm:text-5xl md:text-6xl uppercase tracking-tighter text-[#f3f4f6] leading-[0.95]">
+                        {menuName(selectedWing.name, currentLang)}
                       </h2>
                     </div>
                   </div>
 
                   {selectedWing.heat !== undefined && (
-                    <div className="flex gap-1 mb-8 p-3 bg-black border border-gray-800 w-fit">
+                    <div className="flex gap-1 mb-4 sm:mb-8 p-2 sm:p-3 bg-black border border-gray-800 w-fit">
                       {[...Array(5)].map((_, i) => (
                         <Flame
                           key={i}
-                          size={20}
+                          size={16}
                           className={i < selectedWing.heat ? "text-[#ff4500] fill-[#ff4500] drop-shadow-[0_0_5px_rgba(255,69,0,0.8)]" : "text-gray-800"}
                         />
                       ))}
                     </div>
                   )}
 
-                  <p className="font-['Manrope'] text-[16px] leading-[1.8] text-gray-400 mb-8 border-l-2 border-[#ff4500] pl-4 italic">
-                    "{selectedWing.desc}"
+                  <p className="font-['Manrope'] text-sm sm:text-[16px] leading-[1.7] sm:leading-[1.8] text-gray-400 mb-4 sm:mb-8 border-l-2 border-[#ff4500] pl-3 sm:pl-4 italic">
+                    "{menuDesc(selectedWing.name, currentLang) || selectedWing.desc}"
                   </p>
 
                   {selectedWing.variants && selectedWing.variants.length > 0 && (
-                    <div className="mb-8">
-                      <h4 className="text-gray-400 font-['Manrope'] text-sm uppercase tracking-widest font-bold mb-3">Opțiuni / Variante</h4>
-                      <div className="flex flex-wrap gap-3">
+                    <div className="mb-4 sm:mb-8">
+                      <h4 className="text-gray-400 font-['Manrope'] text-[10px] sm:text-sm uppercase tracking-widest font-bold mb-2 sm:mb-3">{tr(uiCopy.optionsVariants)}</h4>
+                      <div className="flex flex-wrap gap-2 sm:gap-3">
                         {selectedWing.variants.map((v: any, idx: number) => (
                           <button 
                             key={v.label} 
                             onClick={() => setSelectedVariantIndex(idx)}
-                            className={`px-4 py-2 border-2 uppercase font-['Teko'] text-xl font-bold transition-all ${selectedVariantIndex === idx ? 'border-[#ff4500] bg-[#e63946] text-black shadow-[4px_4px_0_#000]' : 'border-gray-800 bg-[#111] text-gray-400 hover:border-gray-600'}`}>
-                            {v.label}
+                            className={`px-3 py-2 sm:px-4 sm:py-2 border-2 uppercase font-['Teko'] text-lg sm:text-xl font-bold transition-all ${selectedVariantIndex === idx ? 'border-[#ff4500] bg-[#e63946] text-black shadow-[4px_4px_0_#000]' : 'border-gray-800 bg-[#111] text-gray-400 hover:border-gray-600'}`}>
+                            {variantLabel(v.label, currentLang)}
                           </button>
                         ))}
                       </div>
                     </div>
                   )}
 
-                  <div className="mb-8">
-                    <div className="flex justify-between items-end border-b-2 border-gray-800 pb-2 mb-4">
-                       <h3 className="font-['Teko'] text-2xl text-[#d1d5db] uppercase tracking-widest leading-none">Specs</h3>
-                       {selectedWing.details && <span className="font-['Manrope'] text-xs text-gray-600 uppercase">Vol. {selectedWing.details}</span>}
+                  <div className="mb-4 sm:mb-8">
+                    <div className="flex justify-between items-end border-b-2 border-gray-800 pb-2 mb-3 sm:mb-4">
+                       <h3 className="font-['Teko'] text-xl sm:text-2xl text-[#d1d5db] uppercase tracking-widest leading-none">{tr(uiCopy.specs)}</h3>
+                       {selectedWing.details && <span className="font-['Manrope'] text-[10px] sm:text-xs text-gray-600 uppercase">Vol. {selectedWing.details}</span>}
                     </div>
                     
                     <div className="flex flex-wrap gap-2">
-                      <span className="px-3 py-1 bg-black border border-gray-700 text-xs font-['Manrope'] font-bold text-gray-400 uppercase tracking-widest">{selectedWing.category}</span>
-                      {selectedWing.sides?.map((side) => (
+                      <span className="px-3 py-1 bg-black border border-gray-700 text-xs font-['Manrope'] font-bold text-gray-400 uppercase tracking-widest">{categoryLabel(selectedWing.category, currentLang)}</span>
+                      {selectedWing.sides?.map((side: string) => (
                         <span
                           key={side}
                           className="px-3 py-1 bg-[#1a1a1a] border border-[#ff4500]/50 text-xs font-['Manrope'] font-bold text-[#f3f4f6] uppercase tracking-widest pointer-events-none"
@@ -604,13 +470,13 @@ export default function App() {
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between pt-6 mt-6 border-t border-gray-800">
-                    <span className="font-['Anton'] text-4xl sm:text-5xl text-[#f3f4f6]">{selectedWing.variants?.[selectedVariantIndex]?.price || selectedWing.price}</span>
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between pt-4 sm:pt-6 mt-4 sm:mt-6 border-t border-gray-800 gap-3">
+                    <span className="font-['Anton'] text-3xl sm:text-5xl text-[#f3f4f6]">{selectedWing.variants?.[selectedVariantIndex]?.price || selectedWing.price}</span>
                     <motion.button
                       whileHover={{ scale: 1.05, rotate: -2 }}
                       whileTap={{ scale: 0.95 }}
                       onClick={() => addToTray({ ...selectedWing, price: selectedWing.variants?.[selectedVariantIndex]?.price || selectedWing.price, variantLabel: selectedWing.variants?.[selectedVariantIndex]?.label, variantIndex: selectedVariantIndex })}
-                      className="px-6 py-3 sm:px-8 sm:py-4 bg-[#ff4500] text-black font-['Teko'] text-xl sm:text-2xl font-bold uppercase tracking-[0.1em] hover:bg-white hover:text-black border-2 border-black border-r-4 border-b-4 transition-all shadow-[6px_6px_0px_#000]"
+                      className="w-full sm:w-auto px-4 py-3 sm:px-8 sm:py-4 bg-[#ff4500] text-black font-['Teko'] text-lg sm:text-2xl font-bold uppercase tracking-[0.1em] hover:bg-white hover:text-black border-2 border-black border-r-4 border-b-4 transition-all shadow-[6px_6px_0px_#000]"
                     >
                       {t.addToRound[currentLang]}
                     </motion.button>
@@ -634,7 +500,7 @@ export default function App() {
             className="fixed inset-0 bg-[#050505] z-50 overflow-y-auto"
           >
             <div className="absolute inset-0 opacity-10 pointer-events-none mix-blend-overlay bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] z-0" />
-            <div className="min-h-screen py-16 px-6 md:px-12 relative z-10">
+            <div className="min-h-screen py-12 sm:py-16 px-3 sm:px-6 md:px-12 relative z-10">
               <motion.div
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
@@ -642,11 +508,11 @@ export default function App() {
                 onClick={(e) => e.stopPropagation()}
                 className="max-w-7xl mx-auto"
               >
-                <div className="flex items-center justify-between mb-16 border-b-8 border-[#ff4500] pb-8">
+                <div className="flex items-start sm:items-center justify-between mb-8 sm:mb-16 border-b-8 border-[#ff4500] pb-6 sm:pb-8 gap-4">
                   <div>
-                    <span className="font-['Manrope'] text-xs font-extrabold tracking-[0.4em] text-gray-500 uppercase block mb-4">Official Document</span>
-                    <h2 className="font-['Anton'] text-[45px] sm:text-[60px] md:text-[120px] uppercase tracking-tighter text-[#f3f4f6] leading-none drop-shadow-lg">
-                      Full Menu
+                    <span className="font-['Manrope'] text-xs font-extrabold tracking-[0.4em] text-gray-500 uppercase block mb-4">{tr(uiCopy.officialDocument)}</span>
+                    <h2 className="font-['Anton'] text-[32px] sm:text-[60px] md:text-[120px] uppercase tracking-tighter text-[#f3f4f6] leading-none drop-shadow-lg">
+                      {tr(uiCopy.fullMenu)}
                     </h2>
                   </div>
                   <button
@@ -657,17 +523,37 @@ export default function App() {
                   </button>
                 </div>
 
-                <div>
-                  {Object.entries(menu).map(([categoryKey, items]: any, catIndex) => (
+                <div className="space-y-6 sm:space-y-10">
+                  <div className="flex items-center gap-2 overflow-x-auto pb-2 -mx-2 px-2 sm:mx-0 sm:px-0">
+                    <button
+                      type="button"
+                      onClick={() => setFullMenuFilter("all")}
+                      className={`shrink-0 px-3 py-2 border-2 font-['Teko'] text-lg uppercase tracking-widest transition-colors ${fullMenuFilter === "all" ? "bg-[#ff4500] text-black border-black shadow-[4px_4px_0_#000]" : "bg-[#111] text-gray-400 border-gray-800 hover:border-[#ff4500]"}`}
+                    >
+                      All
+                    </button>
+                    {Object.keys(menu).map((categoryKey) => (
+                      <button
+                        key={categoryKey}
+                        type="button"
+                        onClick={() => setFullMenuFilter(categoryKey)}
+                        className={`shrink-0 px-3 py-2 border-2 font-['Teko'] text-lg uppercase tracking-widest transition-colors ${fullMenuFilter === categoryKey ? "bg-[#ff4500] text-black border-black shadow-[4px_4px_0_#000]" : "bg-[#111] text-gray-400 border-gray-800 hover:border-[#ff4500]"}`}
+                      >
+                        {categoryLabel(categoryKey, currentLang)}
+                      </button>
+                    ))}
+                  </div>
+
+                  {visibleFullMenuEntries.map(([categoryKey, items]: any, catIndex) => (
                     <div key={categoryKey} className="mb-16">
                       <div className="flex items-center gap-4 mb-8">
-                        <h3 className="font-['Teko'] text-5xl md:text-7xl text-[#ff4500] uppercase font-bold tracking-wider leading-none">
-                          {categoryKey}
+                        <h3 className="font-['Teko'] text-3xl sm:text-5xl md:text-7xl text-[#ff4500] uppercase font-bold tracking-wider leading-none">
+                          {categoryLabel(categoryKey, currentLang)}
                         </h3>
                         <div className="h-2 flex-grow bg-[repeating-linear-gradient(45deg,#333_0,#333_2px,transparent_2px,transparent_8px)]"></div>
                       </div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      <div className="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-2 gap-2 sm:gap-4 md:gap-8">
                         {(items as any[]).map((item, index) => (
                           <motion.div
                             key={item.name}
@@ -675,44 +561,44 @@ export default function App() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: index * 0.05 }}
                             onClick={() => {
-                              setFullMenuOpen(false);
                               setSelectedWing(item);
+                              setSelectedVariantIndex(0);
                             }}
-                            className="bg-black border-4 border-gray-900 hover:border-[#ff4500] transition-all cursor-pointer group shadow-[6px_6px_0px_#111] hover:shadow-[10px_10px_0px_#ff4500] hover:-translate-y-1 relative"
+                            className="bg-black border-2 sm:border-4 border-gray-900 hover:border-[#ff4500] transition-all cursor-pointer group shadow-[4px_4px_0px_#111] hover:shadow-[8px_8px_0px_#ff4500] hover:-translate-y-1 relative overflow-hidden"
                           >
                             {/* Decorative Tape */}
                             <div className="absolute -top-3 left-4 w-12 h-6 bg-[#ff4500]/10 rotate-[-5deg] mix-blend-overlay" />
                             
-                            <div className="flex gap-0 sm:gap-6 p-4 sm:p-6 flex-col sm:flex-row">
-                              <div className="w-full sm:w-40 h-40 flex-shrink-0 overflow-hidden border-2 border-gray-800 relative bg-[#111]">
+                            <div className="flex gap-0 sm:gap-6 p-2 sm:p-6 flex-col sm:flex-row">
+                              <div className="w-full sm:w-40 h-20 sm:h-40 flex-shrink-0 overflow-hidden border-2 border-gray-800 relative bg-[#111]">
                                 <div className="absolute inset-0 bg-[#e63946] mix-blend-multiply opacity-0 group-hover:opacity-40 transition-opacity z-10"></div>
                                 <img
                                   src={item.img}
-                                  alt={item.name}
+                                  alt={menuName(item.name, currentLang)}
                                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 filter saturate-150 contrast-125"
                                 />
                               </div>
-                              <div className="flex-1 mt-4 sm:mt-0 flex flex-col">
-                                <div className="flex items-start justify-between mb-3 gap-2">
-                                  <h3 className="font-['Teko'] text-3xl md:text-4xl font-bold text-[#f3f4f6] uppercase leading-[0.9]">
-                                    {item.name}
+                              <div className="flex-1 mt-2 sm:mt-0 flex flex-col">
+                                <div className="flex items-start justify-between mb-2 sm:mb-3 gap-1 sm:gap-2">
+                                  <h3 className="menu-display-title font-['Teko'] text-[9px] sm:text-3xl md:text-4xl font-bold text-[#f3f4f6] uppercase leading-[0.9] max-sm:tracking-normal max-sm:line-clamp-2">
+                                    {menuName(item.name, currentLang)}
                                   </h3>
-                                  <div className="flex gap-0.5 flex-shrink-0 bg-[#111] p-1 border border-gray-800">
+                                  <div className="hidden sm:flex gap-0.5 flex-shrink-0 bg-[#111] p-1 border border-gray-800">
                                     {(item.heat !== undefined) && [...Array(5)].map((_, i) => (
                                       <Flame
                                         key={i}
-                                        size={14}
+                                        size={12}
                                         className={i < item.heat ? "text-[#ff4500] fill-[#ff4500]" : "text-gray-700 hidden sm:block"}
                                       />
                                     ))}
                                   </div>
                                 </div>
-                                <p className="font-['Manrope'] text-sm text-gray-400 mb-4 border-l-2 border-gray-700 pl-3 italic opacity-80 h-10 overflow-hidden line-clamp-2">
-                                  {item.desc}
+                                <p className="hidden sm:block font-['Manrope'] text-sm text-gray-400 mb-4 border-l-2 border-gray-700 pl-3 italic opacity-80 h-10 overflow-hidden line-clamp-2">
+                                  {menuDesc(item.name, currentLang) || item.desc}
                                 </p>
-                                <div className="mt-auto flex items-end justify-between">
-                                  <span className="font-['Anton'] text-3xl text-[#f3f4f6] bg-gray-900 px-3 py-1 border border-gray-800">{item.variants?.[0]?.price || item.price}</span>
-                                  <span className="font-['Manrope'] text-xs font-bold text-[#ff4500] uppercase tracking-widest group-hover:underline underline-offset-4 decoration-2">Details &rarr;</span>
+                                <div className="mt-auto flex items-end justify-between gap-2">
+                                  <span className="font-['Anton'] text-lg sm:text-3xl text-[#f3f4f6] bg-gray-900 px-2 sm:px-3 py-1 border border-gray-800">{item.variants?.[0]?.price || item.price}</span>
+                                  <span className="hidden sm:inline-block font-['Manrope'] text-xs font-bold text-[#ff4500] uppercase tracking-widest group-hover:underline underline-offset-4 decoration-2">{tr(uiCopy.details)}</span>
                                 </div>
                               </div>
                             </div>
@@ -765,7 +651,7 @@ export default function App() {
                 </div>
 
                 <div className="w-full md:w-1/2 flex flex-col justify-center py-4">
-                  <span className="font-['Manrope'] text-xs font-bold tracking-[0.4em] text-[#e63946] uppercase block mb-4 border-l-2 border-[#e63946] pl-2">Art Info</span>
+                  <span className="font-['Manrope'] text-xs font-bold tracking-[0.4em] text-[#e63946] uppercase block mb-4 border-l-2 border-[#e63946] pl-2">{tr(uiCopy.artInfo)}</span>
                   <h2 className="font-['Anton'] text-5xl sm:text-6xl uppercase tracking-tighter text-[#f3f4f6] mb-2 leading-none">
                     {selectedArt.title}
                   </h2>
@@ -788,7 +674,7 @@ export default function App() {
                       className="px-8 py-5 bg-[#e63946] text-[#f3f4f6] font-['Teko'] text-3xl font-extrabold uppercase tracking-widest hover:bg-[#ff4500] hover:text-black transition-colors flex items-center justify-center gap-3 border-4 border-black shadow-[6px_6px_0px_rgba(230,57,70,0.4)]"
                     >
                       <ShoppingBag size={24} />
-                      Buy Now
+                      {tr(uiCopy.buyNow)}
                     </motion.button>
                   </div>
                 </div>
@@ -808,6 +694,8 @@ export default function App() {
         >
           <HeaderHeroSection />
         </motion.div>
+
+        <PoliceTapeDivider />
 
       {/* Menu Section */}
       <section id="menu" ref={menuSectionRef} className="relative py-32 px-6 bg-[#161616]">
@@ -831,7 +719,10 @@ export default function App() {
             </motion.div>
             <h2 className="font-['Anton'] text-[40px] sm:text-[70px] md:text-[140px] leading-[1] md:leading-[0.8] uppercase tracking-tighter text-[#f3f4f6] mb-6 drop-shadow-xl relative inline-block">{t.bestSellersTitle[currentLang]}</h2>
             <motion.button
-              onClick={() => setFullMenuOpen(true)}
+              onClick={() => {
+                setFullMenuFilter("all");
+                setFullMenuOpen(true);
+              }}
               whileHover={{ scale: 1.05, boxShadow: "4px 4px 0px rgba(255, 69, 0, 1)" }}
               whileTap={{ scale: 0.95 }}
               className="px-6 py-3 sm:px-8 sm:py-4 bg-[#ff4500] text-black font-['Teko'] text-xl sm:text-2xl font-bold uppercase tracking-wider hover:bg-[#ff4500] transition-all flex items-center gap-3 mx-auto shadow-[4px_4px_0px_rgba(255,69,0,0.5)]"
@@ -839,13 +730,14 @@ export default function App() {
               <Info size={24} />{t.openFullMenu[currentLang]}</motion.button>
           </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-16 gap-x-12 mt-16 pb-16">
+        <div className="grid grid-cols-1 gap-y-3 gap-x-4 sm:gap-y-8 md:grid-cols-2 lg:grid-cols-3 mt-6 sm:mt-16 pb-8 sm:pb-16">
           {mainMenuDisplay.slice(0, 3).map((item, index) => (
             <WingCard
               key={item.name}
               item={item}
               index={index}
               inView={menuInView}
+              lang={currentLang}
               onClick={() => { setSelectedWing(item); setSelectedVariantIndex(0); }}
             />
           ))}
@@ -853,8 +745,10 @@ export default function App() {
         </div>
       </section>
 
+      <GooDivider />
+
       {/* Sauce Lab Section */}
-      <section id="sauces" ref={sauceSectionRef} className="relative py-32 px-6 bg-[#0a0a0a] overflow-hidden">
+      <section id="sauces" ref={sauceSectionRef} className="relative py-20 sm:py-32 px-4 sm:px-6 bg-[#0a0a0a] overflow-hidden">
         <div className="absolute inset-0">
           <motion.div
             className="absolute left-0 top-1/4 w-96 h-96 rounded-full blur-3xl opacity-20"
@@ -875,20 +769,20 @@ export default function App() {
            initial={{ opacity: 0, y: 50 }}
            animate={sauceInView ? { opacity: 1, y: 0 } : {}}
            transition={{ duration: 0.8 }}
-           className="text-center mb-28 relative"
+           className="text-center mb-16 sm:mb-28 relative"
          >
-           <motion.div
+           {/* <motion.div
              className="inline-flex items-center justify-center p-6 bg-black border-4 border-[#e63946] mb-8 shadow-[8px_8px_0px_#e63946]"
              animate={{ rotate: 360, scale: [1, 1.1, 1] }}
              transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
            >
              <Zap className="text-[#e63946]" size={40} />
-           </motion.div>
+           </motion.div> */}
            <h2 className="font-['Anton'] text-[45px] sm:text-[80px] md:text-[160px] uppercase tracking-tighter mb-4 leading-[0.8] drop-shadow-xl text-[#f3f4f6] mix-blend-difference">{t.sauceMenuTitle1[currentLang]} <span className="text-[#e63946] bg-black px-4 ml-[-20px] skew-x-[-10deg] inline-block shadow-[4px_4px_0px_#fff]">{t.sauceMenuTitle2[currentLang]}</span>
            </h2>
          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8 md:gap-12">
             {[
               {
                 name: "Death March",
@@ -919,27 +813,29 @@ export default function App() {
                 icon: <Zap className="text-green-500" size={40} />
               },
             ].map((sauce, index) => (
-              <SauceCard key={sauce.name} sauce={sauce} index={index} inView={sauceInView} />
+              <SauceCard key={sauce.name} sauce={sauce} index={index} inView={sauceInView} lang={currentLang} />
             ))}
           </div>
         </div>
       </section>
 
+      <ArcadeDivider />
+
       {/* Arcade Section */}
-      <section id="arcade" ref={arcadeRef} className="relative py-40 px-6 bg-[#111] overflow-hidden">
+      <section id="arcade" ref={arcadeRef} className="relative py-24 sm:py-40 px-4 sm:px-6 bg-[#111] overflow-hidden">
         {/* Checkered background pattern */}
         <div className="absolute inset-0 opacity-10 mix-blend-overlay">
           <div className="w-full h-full" style={{ backgroundImage: 'linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000), linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000)', backgroundSize: '60px 60px', backgroundPosition: '0 0, 30px 30px' }} />
         </div>
         
-        <div className="absolute -left-32 top-1/3 transform -rotate-90 pointer-events-none opacity-5 font-['Anton'] text-[10vw] leading-none text-[#f3f4f6] whitespace-nowrap hidden lg:block overflow-hidden w-full h-full">{t.noQuarters[currentLang]}</div>
+        <div className="absolute -left-32 bottom-1/6 transform -rotate-90 pointer-events-none opacity-5 font-['Anton'] text-[10vw] leading-none text-[#f3f4f6] whitespace-nowrap hidden lg:block overflow-hidden w-full h-full">{t.noQuarters[currentLang]}</div>
 
         <div className="max-w-7xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={arcadeInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
-            className="text-center mb-24 md:mb-32 relative"
+            className="text-center mb-14 sm:mb-24 md:mb-32 relative"
           >
             <motion.div
               className="inline-flex items-center justify-center p-6 bg-[#ff4500] border-8 border-black shadow-[15px_15px_0px_#000] mb-12 rotate-[-5deg]"
@@ -958,7 +854,7 @@ export default function App() {
             </div>
           </motion.div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:grid-cols-2 lg:grid-cols-3 md:gap-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:grid-cols-2 lg:grid-cols-3 md:gap-10">
               {arcadeGames.map((game, index) => (
                 <motion.div
                   key={game.name}
@@ -966,31 +862,31 @@ export default function App() {
                   animate={arcadeInView ? { opacity: 1, scale: 1 } : {}}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   whileHover={{ scale: 1.05, rotate: index % 2 === 0 ? 2 : -2 }}
-                  className="bg-black border-4 border-gray-800 p-6 md:p-8 relative overflow-hidden group shadow-[6px_6px_0px_#111] md:shadow-[10px_10px_0px_#111] hover:shadow-[10px_10px_0px_#ff4500] hover:border-[#ff4500] transition-all cursor-pointer flex flex-col h-full"
+                  className="bg-black border-4 border-gray-800 p-4 sm:p-6 md:p-8 relative overflow-hidden group shadow-[6px_6px_0px_#111] md:shadow-[10px_10px_0px_#111] hover:shadow-[10px_10px_0px_#ff4500] hover:border-[#ff4500] transition-all cursor-pointer flex flex-col h-full"
                 >
                   {!game.available && (
                     <div className="absolute top-4 -right-10 md:top-6 md:-right-12 px-10 py-1 md:px-12 md:py-2 bg-red-600 text-black font-['Anton'] text-lg md:text-xl uppercase rotate-45 shadow-[2px_2px_0px_#000] border-2 border-black z-20">
-                      In Use
+                      {tr(uiCopy.inUse)}
                     </div>
                   )}
                   {game.available && (
                     <div className="absolute top-4 -right-10 md:top-6 md:-right-12 px-10 py-1 md:px-12 md:py-2 bg-[#ff4500] text-black font-['Anton'] text-lg md:text-xl uppercase rotate-45 shadow-[2px_2px_0px_#000] border-2 border-black z-20">
-                      Open
+                      {tr(uiCopy.open)}
                     </div>
                   )}
 
-                  <Gamepad2 className="text-[#333] mb-4 md:mb-6 group-hover:text-[#f3f4f6] transition-colors" size={48} />
+                  <Gamepad2 className="text-[#333] mb-3 sm:mb-4 md:mb-6 group-hover:text-[#f3f4f6] transition-colors" size={36} />
 
-                  <h3 className="font-['Teko'] text-3xl md:text-4xl font-extrabold text-[#f3f4f6] uppercase mb-2 leading-[0.9] w-3/4 group-hover:text-[#ff4500] break-words">
+                  <h3 className="font-['Teko'] text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#f3f4f6] uppercase mb-2 leading-[0.9] w-3/4 group-hover:text-[#ff4500] break-words">
                     {game.name}
                   </h3>
-                  <span className="inline-block bg-[#ff4500] text-black px-2 py-1 font-['Manrope'] text-[10px] md:text-xs font-bold uppercase tracking-widest mb-4 w-fit">
+                  <span className="inline-block bg-[#ff4500] text-black px-2 py-1 font-['Manrope'] text-[9px] sm:text-[10px] md:text-xs font-bold uppercase tracking-widest mb-3 sm:mb-4 w-fit">
                     {game.type}
                   </span>
 
-                  <div className="mt-auto pt-4 md:pt-6 border-t-4 border-dashed border-gray-800 relative group-hover:border-gray-600">
-                    <p className="font-['Manrope'] text-xs md:text-sm font-bold text-gray-500 uppercase tracking-widest">
-                      {game.available ? "> Walk up and play" : "> Try again later"}
+                  <div className="mt-auto pt-3 sm:pt-4 md:pt-6 border-t-4 border-dashed border-gray-800 relative group-hover:border-gray-600">
+                    <p className="font-['Manrope'] text-[10px] sm:text-xs md:text-sm font-bold text-gray-500 uppercase tracking-widest">
+                      {game.available ? tr(uiCopy.walkUpAndPlay) : tr(uiCopy.tryAgainLater)}
                     </p>
                   </div>
                 </motion.div>
@@ -1006,16 +902,16 @@ export default function App() {
             <div className="bg-[#ff4500] border-8 border-black p-8 shadow-[12px_12px_0px_#000] flex flex-col md:flex-row items-center justify-center md:justify-start text-center md:text-left gap-6 group cursor-pointer hover:bg-[#ff4500] transition-colors">
               <Users className="text-black group-hover:scale-110 transition-transform" size={48} />
               <div>
-                <p className="font-['Anton'] text-4xl md:text-5xl text-black uppercase mb-2 leading-none">Host a Tournament</p>
-                <p className="font-['Manrope'] text-black font-bold uppercase tracking-widest text-sm">Organizers drink free. Bring the crowd.</p>
+                <p className="font-['Anton'] text-4xl md:text-5xl text-black uppercase mb-2 leading-none">{tr(uiCopy.hostTournamentTitle)}</p>
+                {/* <p className="font-['Manrope'] text-black font-bold uppercase tracking-widest text-sm">{tr(uiCopy.hostTournamentCopy)}</p> */}
               </div>
             </div>
 
             <div className="bg-black border-8 border-gray-800 p-8 shadow-[12px_12px_0px_#ff4500] flex flex-col md:flex-row items-center justify-center md:justify-start text-center md:text-left gap-6 group cursor-pointer hover:border-[#ff4500] transition-colors">
               <Zap className="text-[#f3f4f6] group-hover:scale-110 transition-transform group-hover:text-[#ff4500]" size={48} />
               <div>
-                <p className="font-['Anton'] text-4xl md:text-5xl text-[#f3f4f6] uppercase mb-2 leading-none">Get Notified</p>
-                <p className="font-['Manrope'] text-gray-400 font-bold uppercase tracking-widest text-sm group-hover:text-gray-300">Sign up for fight nights & tournaments</p>
+                <p className="font-['Anton'] text-4xl md:text-5xl text-[#f3f4f6] uppercase mb-2 leading-none">{tr(uiCopy.getNotifiedTitle)}</p>
+                <p className="font-['Manrope'] text-gray-400 font-bold uppercase tracking-widest text-sm group-hover:text-gray-300">{tr(uiCopy.getNotifiedCopy)}</p>
               </div>
             </div>
           </motion.div>
@@ -1023,7 +919,7 @@ export default function App() {
       </section>
 
       {/* Art Gallery Section */}
-      <section id="art" ref={artRef} className="relative py-32 px-6 bg-[#050505] border-t-8 border-[#e63946] overflow-hidden">
+      <section id="art" ref={artRef} className="relative py-20 sm:py-32 px-4 sm:px-6 bg-[#050505] border-t-8 border-[#e63946] overflow-hidden">
         {/* Grungy background pattern */}
         <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={{ backgroundImage: 'repeating-linear-gradient(45deg, #fff 0px, #fff 2px, transparent 2px, transparent 12px)' }}></div>
         
@@ -1032,7 +928,7 @@ export default function App() {
             initial={{ opacity: 0, y: 50 }}
             animate={artInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
-            className="text-left mb-24 md:flex items-end justify-between border-b-4 border-gray-800 pb-12"
+            className="text-left mb-14 sm:mb-24 md:flex items-end justify-between border-b-4 border-gray-800 pb-8 sm:pb-12"
           >
             <div>
               <motion.div
@@ -1047,12 +943,9 @@ export default function App() {
               </h2>
             </div>
             
-            <p className="font-['Manrope'] text-lg text-gray-400 max-w-sm mt-8 md:mt-0 bg-[#111] p-6 border-l-4 border-[#e63946] leading-relaxed">
-              Local artists only. Raw talent, unfiltered expression. 100% of sales go to the creators. Keep the scene alive.
-            </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 md:gap-12">
             {artPieces.map((art, index) => (
               <motion.div
                 key={art.title}
@@ -1061,9 +954,9 @@ export default function App() {
                 transition={{ duration: 0.6, delay: index * 0.15 }}
                 onClick={() => setSelectedArt(art)}
                 whileHover={{ y: -10, rotate: index % 2 === 0 ? -1 : 1 }}
-                className="bg-black border-4 border-gray-900 p-4 hover:border-[#e63946] transition-all cursor-pointer group shadow-[12px_12px_0px_#111] hover:shadow-[16px_16px_0px_#e63946]"
+                className="bg-black border-4 border-gray-900 p-3 sm:p-4 hover:border-[#e63946] transition-all cursor-pointer group shadow-[12px_12px_0px_#111] hover:shadow-[16px_16px_0px_#e63946]"
               >
-                <div className="relative h-[28rem] overflow-hidden border-2 border-gray-800 mb-6 bg-[#0a0a0a]">
+                <div className="relative h-52 sm:h-[28rem] overflow-hidden border-2 border-gray-800 mb-4 sm:mb-6 bg-[#0a0a0a]">
                   <img
                     src={art.img}
                     alt={art.title}
@@ -1075,17 +968,17 @@ export default function App() {
                   </div>
                 </div>
 
-                <div className="p-2">
-                  <h3 className="font-['Teko'] text-4xl font-extrabold text-[#f3f4f6] uppercase mb-1 leading-none group-hover:text-[#e63946] transition-colors">
+                <div className="p-1 sm:p-2">
+                  <h3 className="font-['Teko'] text-2xl sm:text-4xl font-extrabold text-[#f3f4f6] uppercase mb-1 leading-none group-hover:text-[#e63946] transition-colors">
                     {art.title}
                   </h3>
-                  <p className="font-['Manrope'] text-sm tracking-widest text-gray-500 uppercase font-bold mb-4">
+                  <p className="font-['Manrope'] text-[10px] sm:text-sm tracking-widest text-gray-500 uppercase font-bold mb-2 sm:mb-4">
                     // {art.artist}
                   </p>
                   
-                  <div className="flex items-center justify-between pt-6 border-t-[3px] border-dashed border-gray-800">
-                    <span className="font-['Manrope'] text-xs font-bold text-gray-400 uppercase tracking-widest">
-                      Purchase Inquiry
+                  <div className="flex items-center justify-between pt-3 sm:pt-6 border-t-[3px] border-dashed border-gray-800">
+                    <span className="font-['Manrope'] text-[10px] sm:text-xs font-bold text-gray-400 uppercase tracking-widest">
+                      {tr(uiCopy.purchaseInquiry)}
                     </span>
                     <motion.div
                       whileHover={{ scale: 1.2, rotate: 15 }}
@@ -1119,7 +1012,7 @@ export default function App() {
       </section>
 
       {/* Location Teaser */}
-      <section id="location" className="relative py-40 px-6 border-y-[12px] border-black overflow-hidden flex items-center justify-center min-h-[70vh]">
+      <section id="location" className="relative py-16 sm:py-40 px-4 sm:px-6 border-y-[12px] border-black overflow-hidden flex items-center justify-center min-h-[100svh] sm:min-h-[70vh]">
         {/* Darker grunge red background instead of pure red */}
         <div className="absolute inset-0 bg-[#8b1c00] z-0" />
         <div className="absolute inset-0 opacity-[0.3] mix-blend-color-burn bg-[url('https://www.transparenttextures.com/patterns/concrete-wall.png')] pointer-events-none z-10" />
@@ -1129,34 +1022,34 @@ export default function App() {
           LOCATION LOCATION LOCATION LOCATION LOCATION
         </div>
 
-        <div className="max-w-5xl mx-auto text-center relative z-20">
+        <div className="max-w-5xl mx-auto text-center relative z-20 w-full">
           <motion.div
             initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
             whileInView={{ opacity: 1, scale: 1, rotate: -2 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, type: "spring", stiffness: 200 }}
-            className="bg-black p-12 md:p-20 shadow-[20px_20px_0px_#fff] border-8 border-black text-[#f3f4f6] relative rotate-2 hover:rotate-0 transition-transform duration-500 max-w-[90vw]"
+            className="bg-black p-6 sm:p-12 md:p-20 shadow-[20px_20px_0px_#fff] border-8 border-black text-[#f3f4f6] relative rotate-2 hover:rotate-0 transition-transform duration-500 max-w-[92vw] sm:max-w-[90vw] mx-auto"
           >
             {/* Duct tape effect */}
             <div className="absolute -top-6 top-0 left-1/2 -translate-x-1/2 w-48 h-12 bg-[#ff4500]/20 backdrop-blur-md rotate-[-3deg] mix-blend-overlay" />
             
-            <h2 className="font-['Anton'] text-[60px] sm:text-[45px] sm:text-[60px] md:text-[120px] uppercase tracking-tighter text-[#f3f4f6] mb-4 leading-[0.8] drop-shadow-[5px_5px_0_#ff4500]">{t.findThePitTitle[currentLang]}</h2>
-            <div className="font-['Manrope'] text-xl md:text-2xl text-gray-300 mb-12 font-bold max-w-2xl mx-auto uppercase tracking-widest leading-loose">
-              <span className="bg-[#ff4500] text-black px-2 mt-1 inline-block">123 Metal Avenue</span><br />
-              Downtown District<br />
+            <h2 className="font-['Anton'] text-[38px] sm:text-[60px] md:text-[120px] uppercase tracking-tighter text-[#f3f4f6] mb-3 sm:mb-4 leading-[0.82] drop-shadow-[5px_5px_0_#ff4500]">{t.findThePitTitle[currentLang]}</h2>
+            <div className="font-['Manrope'] text-base sm:text-xl md:text-2xl text-gray-300 mb-6 sm:mb-12 font-bold max-w-2xl mx-auto uppercase tracking-widest leading-snug sm:leading-loose">
+              <span className="bg-[#ff4500] text-black px-2 mt-1 inline-block">{tr(uiCopy.locationLine1)}</span><br />
+              {tr(uiCopy.locationLine2)}<br />
               <span className="text-[#ff4500] italic">{t.open7Days[currentLang]}</span>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto border-t-4 border-dashed border-gray-800 pt-12">
+            <div className="grid grid-cols-2 gap-3 sm:gap-6 max-w-3xl mx-auto border-t-4 border-dashed border-gray-800 pt-6 sm:pt-12">
               <motion.button
                 whileHover={{ scale: 1.05, boxShadow: "8px 8px 0px #fff" }}
                 whileTap={{ scale: 0.95 }}
-                className="w-full py-6 bg-[#ff4500] text-black font-['Teko'] text-3xl md:text-4xl font-extrabold uppercase tracking-widest border-4 border-black hover:bg-[#ff4500] transition-all shadow-[6px_6px_0px_transparent]"
+                className="w-full py-4 sm:py-6 bg-[#ff4500] text-black font-['Teko'] text-xl sm:text-3xl md:text-4xl font-extrabold uppercase tracking-widest border-4 border-black hover:bg-[#ff4500] transition-all shadow-[6px_6px_0px_transparent]"
               >{t.getDirections[currentLang]}</motion.button>
               <motion.button
                 whileHover={{ scale: 1.05, boxShadow: "8px 8px 0px #ff4500" }}
                 whileTap={{ scale: 0.95 }}
-                className="w-full py-6 bg-transparent text-[#f3f4f6] font-['Teko'] text-3xl md:text-4xl font-extrabold uppercase tracking-widest border-4 border-[#ff4500] hover:bg-black hover:text-[#ff4500] transition-all shadow-[6px_6px_0px_transparent]"
+                className="w-full py-4 sm:py-6 bg-transparent text-[#f3f4f6] font-['Teko'] text-xl sm:text-3xl md:text-4xl font-extrabold uppercase tracking-widest border-4 border-[#ff4500] hover:bg-black hover:text-[#ff4500] transition-all shadow-[6px_6px_0px_transparent]"
               >{t.callBar[currentLang]}</motion.button>
             </div>
           </motion.div>
@@ -1166,55 +1059,55 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="relative py-20 px-6 bg-black">
+      <footer className="relative py-10 sm:py-20 px-4 sm:px-6 bg-black">
         <div className="absolute top-0 left-0 w-full h-[8px] bg-[repeating-linear-gradient(90deg,#ff4500_0,#ff4500_20px,transparent_20px,transparent_40px)]" />
 
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20 border-b-8 border-gray-900 pb-20">
-            <div className="col-span-1 md:col-span-2">
-              <h3 className="font-['Anton'] text-5xl sm:text-6xl md:text-8xl text-[#f3f4f6] mb-6 leading-none drop-shadow-[5px_5px_0_#ff4500] -skew-x-[10deg]">WINGS &<br/>THINGS</h3>
-              <p className="font-['Manrope'] text-lg text-gray-400 font-bold uppercase tracking-widest max-w-sm border-l-4 border-[#ff4500] pl-6 mt-8">
-                Born in fire.<br/>{t.forgedFlavor[currentLang]}<br/>No corporate bullshit.
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-10 sm:gap-16 mb-10 sm:mb-20 border-b-8 border-gray-900 pb-10 sm:pb-20">
+            <div className="md:col-span-2 text-center md:text-left">
+              <h3 className="font-['Anton'] text-3xl sm:text-6xl md:text-8xl text-[#f3f4f6] mb-4 sm:mb-6 leading-none drop-shadow-[5px_5px_0_#ff4500] -skew-x-[10deg]">WINGS &<br/>THINGS</h3>
+              <p className="font-['Manrope'] text-sm sm:text-lg text-gray-400 font-bold uppercase tracking-widest max-w-sm mx-auto md:mx-0 border-l-0 sm:border-l-4 border-[#ff4500] pl-0 sm:pl-6 mt-4 sm:mt-8">
+                {t.bornInFire[currentLang]}<br/>
               </p>
             </div>
 
-            <div>
-              <h4 className="font-['Teko'] text-4xl font-bold text-[#ff4500] mb-8 uppercase tracking-widest border-b-2 border-gray-800 pb-2 inline-block">INFO</h4>
-              <ul className="font-['Manrope'] text-lg text-[#f3f4f6] font-bold uppercase tracking-wider space-y-4">
+            <div className="text-center md:text-left">
+              <h4 className="font-['Teko'] text-3xl sm:text-4xl font-bold text-[#ff4500] mb-4 sm:mb-8 uppercase tracking-widest border-b-2 border-gray-800 pb-2 inline-block">{tr(uiCopy.footerInfoHeading)}</h4>
+              <ul className="font-['Manrope'] text-sm sm:text-lg text-[#f3f4f6] font-bold uppercase tracking-wider space-y-3 sm:space-y-4 max-w-sm mx-auto md:mx-0">
                 <li className="flex flex-col">
-                  <span className="text-gray-500 text-sm">Hours</span>
+                  <span className="text-gray-500 text-sm">{tr(uiCopy.footerHoursLabel)}</span>
                   <span>Every day 12:00 - 22:00</span>
                 </li>
                 <li className="flex flex-col">
-                  <span className="text-gray-500 text-sm">Address</span>
+                  <span className="text-gray-500 text-sm">{tr(uiCopy.footerAddressLabel)}</span>
                   <span>Str. Mitropolit Gavriil <br/>Bănulescu-Bodoni 4<br/>Chișinău</span>
                 </li>
                 <li className="flex flex-col">
-                  <span className="text-gray-500 text-sm">Phone</span>
+                  <span className="text-gray-500 text-sm">{tr(uiCopy.footerPhoneLabel)}</span>
                   <span>0674 93 930</span>
                 </li>
               </ul>
             </div>
 
-            <div>
-              <h4 className="font-['Teko'] text-4xl font-bold text-[#ff4500] mb-8 uppercase tracking-widest border-b-2 border-gray-800 pb-2 inline-block">{t.social[currentLang]}</h4>
-              <div className="flex flex-col gap-4 font-['Manrope'] text-xl font-extrabold uppercase truncate">
-                <motion.a href="https://www.instagram.com/wingsandthings.md/" target="_blank" rel="noreferrer" className="text-[#f3f4f6] hover:text-[#ff4500] hover:translate-x-2 transition-transform flex items-center gap-4 group">
+            <div className="text-center md:text-left">
+              <h4 className="font-['Teko'] text-3xl sm:text-4xl font-bold text-[#ff4500] mb-4 sm:mb-8 uppercase tracking-widest border-b-2 border-gray-800 pb-2 inline-block">{t.social[currentLang]}</h4>
+              <div className="flex flex-col items-center md:items-start gap-3 sm:gap-4 font-['Manrope'] text-sm sm:text-xl font-extrabold uppercase max-w-sm mx-auto md:mx-0">
+                <motion.a href="https://www.instagram.com/wingsandthings.md/" target="_blank" rel="noreferrer" className="w-full justify-center md:justify-start text-[#f3f4f6] hover:text-[#ff4500] hover:translate-x-2 transition-transform flex items-center gap-4 group">
                   <span className="text-gray-700 text-sm group-hover:text-[#f3f4f6]">01</span>INSTAGRAM
                 </motion.a>
-                <motion.a href="https://www.facebook.com/p/Wings-and-things-61570643753532/" target="_blank" rel="noreferrer" className="text-[#f3f4f6] hover:text-[#ff4500] hover:translate-x-2 transition-transform flex items-center gap-4 group">
+                <motion.a href="https://www.facebook.com/p/Wings-and-things-61570643753532/" target="_blank" rel="noreferrer" className="w-full justify-center md:justify-start text-[#f3f4f6] hover:text-[#ff4500] hover:translate-x-2 transition-transform flex items-center gap-4 group">
                   <span className="text-gray-700 text-sm group-hover:text-[#f3f4f6]">02</span>FACEBOOK
                 </motion.a>
-                <motion.a href="https://www.tiktok.com/@wings.and.things92" target="_blank" rel="noreferrer" className="text-[#f3f4f6] hover:text-[#ff4500] hover:translate-x-2 transition-transform flex items-center gap-4 group">
+                <motion.a href="https://www.tiktok.com/@wings.and.things92" target="_blank" rel="noreferrer" className="w-full justify-center md:justify-start text-[#f3f4f6] hover:text-[#ff4500] hover:translate-x-2 transition-transform flex items-center gap-4 group">
                   <span className="text-gray-700 text-sm group-hover:text-[#f3f4f6]">03</span>TIKTOK
                 </motion.a>
               </div>
             </div>
           </div>
 
-          <div className="flex flex-col md:flex-row justify-between items-center gap-8 text-center md:text-left">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4 sm:gap-8 text-center md:text-left">
             <p className="font-['Manrope'] text-sm font-bold text-gray-500 uppercase tracking-widest">{t.rights[currentLang]}</p>
-            <div className="font-['Anton'] text-[8vw] md:text-[100px] leading-none text-gray-900 select-none overflow-hidden h-20 -my-10 opacity-30 pointer-events-none">{t.noWeakSauce[currentLang]}</div>
+            <div className="hidden sm:block font-['Anton'] text-[10vw] md:text-[92px] leading-none text-gray-900 select-none overflow-hidden h-20 -my-10 opacity-30 pointer-events-none">{t.noWeakSauce[currentLang]}</div>
           </div>
         </div>
       </footer>
@@ -1222,7 +1115,139 @@ export default function App() {
   );
 }
 
-function WingCard({ item, index, inView, onClick }: any) {
+function PoliceTapeDivider() {
+  const words = ["HOTTEST", "LICK UR FINGERS", "FORGED IN FLAVOR"];
+  const tapeRun = [...words, ...words, ...words, ...words];
+
+  return (
+    <div className="relative h-40 sm:h-48 overflow-hidden pointer-events-none -my-6 sm:-my-10 bg-[#070707] z-30 flex items-center justify-center flex-col">
+      {/* Secondary Tape (Dark/Orange) - BEHIND */}
+      <motion.div className="absolute w-[110%] rotate-[3deg] shadow-[0_10px_20px_rgba(0,0,0,0.8)] z-10 bottom-6 sm:bottom-10">
+        <div className="relative border-y-4 border-[#ff4500] bg-[#0a0a0a] overflow-hidden">
+          <motion.div
+            animate={{ x: [-200, 0] }}
+            transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+            className="flex w-max items-center gap-10 py-2 px-6"
+          >
+            {tapeRun.map((word, index) => (
+              <span key={`${word}-shadow-${index}`} className="font-['Teko'] text-2xl sm:text-4xl uppercase tracking-[0.4em] text-[#ff4500] whitespace-nowrap drop-shadow-[0_0_8px_rgba(255,69,0,0.7)]">
+                {word}
+              </span>
+            ))}
+          </motion.div>
+        </div>
+      </motion.div>
+
+      {/* Primary Tape (Red Stripes) - IN FRONT */}
+      <motion.div className="absolute w-[110%] rotate-[-2deg] shadow-[0_15px_30px_rgba(0,0,0,0.9)] z-20 top-8 sm:top-12">
+        <div className="relative border-y-4 border-black bg-[repeating-linear-gradient(135deg,#e63946_0_30px,#b91c1c_30px_60px)] overflow-hidden">
+          <div className="absolute inset-0 bg-black/10 mix-blend-multiply" />
+          <motion.div
+            animate={{ x: [0, -200] }}
+            transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+            className="flex w-max items-center gap-10 py-3 px-6"
+          >
+            {tapeRun.map((word, index) => (
+              <span key={`${word}-${index}`} className="flex items-center gap-4 font-['Anton'] text-3xl sm:text-5xl uppercase tracking-[0.25em] text-black drop-shadow-[1px_1px_0_rgba(255,255,255,0.4)]">
+                <span className="inline-block h-3 w-3 rounded-full bg-black border border-black/40 shadow-[inset_1px_1px_2px_rgba(255,255,255,0.5)]" />
+                {word}
+              </span>
+            ))}
+          </motion.div>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
+function GooDivider() {
+  const skulls = [
+    { left: "5%", top: "10%", size: 20, delay: 0, duration: 3.5 },
+    { left: "18%", top: "35%", size: 28, delay: 1.2, duration: 4.2 },
+    { left: "32%", top: "15%", size: 22, delay: 0.5, duration: 3.8 },
+    { left: "45%", top: "42%", size: 30, delay: 2.1, duration: 4.5 },
+    { left: "58%", top: "20%", size: 18, delay: 0.8, duration: 3.2 },
+    { left: "72%", top: "38%", size: 26, delay: 1.5, duration: 4.0 },
+    { left: "85%", top: "12%", size: 24, delay: 0.3, duration: 3.6 },
+    { left: "95%", top: "45%", size: 22, delay: 1.8, duration: 4.1 },
+  ];
+
+  return (
+    <div className="relative h-32 sm:h-48 w-full overflow-hidden pointer-events-none -my-1 sm:-my-2 bg-transparent z-20 drop-shadow-[0_15px_15px_rgba(255,69,0,0.3)]">
+      {/* SVG gooey sauces dripping effect */}
+      <svg 
+        viewBox="0 0 1440 120" 
+        preserveAspectRatio="none" 
+        className="absolute top-0 left-0 w-full h-full"
+      >
+        <defs>
+          <linearGradient id="sauceGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#e63946" />
+            <stop offset="50%" stopColor="#ff4500" />
+            <stop offset="100%" stopColor="#c2410c" />
+          </linearGradient>
+        </defs>
+        <motion.path 
+           fill="url(#sauceGrad)"
+           animate={{
+             d: [
+               "M0,0 L1440,0 L1440,40 Q1380,80 1320,40 Q1260,100 1200,40 Q1140,60 1080,30 Q1020,90 960,40 Q900,70 840,40 Q780,110 720,40 Q660,80 600,40 Q540,60 480,40 Q420,100 360,50 Q300,80 240,40 Q180,90 120,40 Q60,70 0,40 Z",
+               "M0,0 L1440,0 L1440,50 Q1380,60 1320,80 Q1260,40 1200,100 Q1140,50 1080,80 Q1020,60 960,110 Q900,40 840,90 Q780,60 720,100 Q660,50 600,90 Q540,110 480,70 Q420,60 360,90 Q300,60 240,100 Q180,50 120,80 Q60,100 0,60 Z",
+               "M0,0 L1440,0 L1440,40 Q1380,80 1320,40 Q1260,100 1200,40 Q1140,60 1080,30 Q1020,90 960,40 Q900,70 840,40 Q780,110 720,40 Q660,80 600,40 Q540,60 480,40 Q420,100 360,50 Q300,80 240,40 Q180,90 120,40 Q60,70 0,40 Z"
+             ]
+           }}
+           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </svg>
+      
+      {/* Skulls floating organically in the sauce */}
+      {skulls.map((skull, i) => (
+         <motion.div
+           key={`skull-${i}`}
+           className="absolute z-10 opacity-90"
+           style={{ left: skull.left, top: skull.top }}
+           animate={{ y: [0, 15, 0], rotate: [-10, 10, -10] }}
+           transition={{ duration: skull.duration, repeat: Infinity, ease: "easeInOut", delay: skull.delay }}
+         >
+           <Skull size={skull.size} strokeWidth={2.5} className="text-white drop-shadow-[0_0_12px_#ff4500] fill-white/20" />
+         </motion.div>
+      ))}
+    </div>
+  );
+}
+
+function ArcadeDivider() {
+  return (
+    <div className="relative h-20 sm:h-28 flex items-center justify-center overflow-hidden pointer-events-none -my-2 sm:-my-4 bg-black z-30 border-y-4 border-[#ff4500] shadow-[0_0_20px_rgba(255,69,0,0.3)]">
+      {/* Moving pixel blocks */}
+      <div className="absolute inset-0 flex">
+        <motion.div 
+          animate={{ x: [0, -800] }} 
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          className="flex h-full w-max gap-12 items-center px-4"
+        >
+          {[...Array(25)].map((_, i) => (
+             <div key={i} className="flex gap-6 items-center">
+               {/* Pixel Invader SVG */}
+               <svg width="40" height="30" viewBox="0 0 11 8" className="fill-[#ff4500] drop-shadow-[0_0_8px_#ff4500]">
+                 <path d="M3,0 L4,0 L4,1 L3,1 L3,0 Z M7,0 L8,0 L8,1 L7,1 L7,0 Z M4,1 L5,1 L5,2 L4,2 L4,1 Z M6,1 L7,1 L7,2 L6,2 L6,1 Z M2,2 L9,2 L9,3 L2,3 L2,2 Z M1,3 L3,3 L3,4 L1,4 L1,3 Z M4,3 L7,3 L7,4 L4,4 L4,3 Z M8,3 L10,3 L10,4 L8,4 L8,3 Z M0,4 L11,4 L11,5 L0,5 L0,4 Z M0,5 L1,5 L1,6 L0,6 L0,5 Z M2,5 L3,5 L3,6 L2,6 L2,5 Z M8,5 L9,5 L9,6 L8,6 L8,5 Z M10,5 L11,5 L11,6 L10,6 L10,5 Z M3,6 L5,6 L5,7 L3,7 L3,6 Z M6,6 L8,6 L8,7 L6,7 L6,6 Z M4,7 L7,7 L7,8 L4,8 L4,7 Z" />
+               </svg>
+               <span className="font-['Teko'] text-3xl uppercase tracking-[0.2em] text-[#f3f4f6]">INSERT COIN</span>
+               <div className="flex gap-1">
+                 <div className="w-2 h-2 bg-[#e63946] shadow-[0_0_5px_#e63946]"></div>
+                 <div className="w-2 h-2 bg-[#e63946] shadow-[0_0_5px_#e63946]"></div>
+                 <div className="w-2 h-2 bg-[#e63946] shadow-[0_0_5px_#e63946]"></div>
+               </div>
+             </div>
+          ))}
+        </motion.div>
+      </div>
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,black_0%,transparent_10%,transparent_90%,black_100%)] pointer-events-none" />
+    </div>
+  );
+}
+
+function WingCard({ item, index, inView, onClick, lang }: any) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -1233,23 +1258,19 @@ function WingCard({ item, index, inView, onClick }: any) {
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
       onClick={onClick}
-      className={`relative group cursor-pointer !rounded-none flex flex-col h-full transform ${index % 2 === 0 ? "rotate-[-1deg]" : "rotate-[1deg]"} hover:rotate-0 transition-transform duration-300`}
+      className={`relative group cursor-pointer !rounded-none flex flex-col max-sm:flex-row h-full transform ${index % 2 === 0 ? "rotate-[-1deg]" : "rotate-[1deg]"} hover:rotate-0 transition-transform duration-300`}
     >
-      <div className="bg-black border-4 border-[#ff4500] shadow-[12px_12px_0px_#e63946] flex flex-col h-full relative z-10 group-hover:-translate-y-2 group-hover:-translate-x-2 transition-all duration-300">
-        
-        {/* Number Badge */}
-        <div className="absolute -top-6 -left-6 z-30 bg-[#ff4500] border-4 border-black p-3 shadow-[6px_6px_0px_#e63946] transform -rotate-6 group-hover:rotate-0 transition-transform">
+      <div className="bg-black border-4 border-[#ff4500] shadow-[12px_12px_0px_#e63946] flex flex-col max-sm:flex-row h-full relative z-10 group-hover:-translate-y-2 group-hover:-translate-x-2 transition-all duration-300">
+        <div className="absolute -top-6 -left-6 z-30 bg-[#ff4500] border-4 border-black p-3 shadow-[6px_6px_0px_#e63946] transform -rotate-6 group-hover:rotate-0 transition-transform max-sm:hidden">
           <span className="font-['Anton'] text-4xl text-black">0{index + 1}</span>
         </div>
 
-        {/* Tape Graphics */}
-        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-32 h-8 bg-[#ff4500]/20 backdrop-blur-sm rotate-[-2deg] mix-blend-overlay z-20" />
-        <div className="absolute -bottom-3 right-10 w-24 h-8 bg-[#ff4500]/20 backdrop-blur-sm rotate-[4deg] mix-blend-overlay z-20" />
+        <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-32 h-8 bg-[#ff4500]/20 backdrop-blur-sm rotate-[-2deg] mix-blend-overlay z-20 max-sm:hidden" />
+        <div className="absolute -bottom-3 right-10 w-24 h-8 bg-[#ff4500]/20 backdrop-blur-sm rotate-[4deg] mix-blend-overlay z-20 max-sm:hidden" />
 
-        {/* Image Container */}
-        <div className="relative h-72 md:h-80 overflow-hidden bg-[#111] p-3 border-b-4 border-[#ff4500]">
+        <div className="relative h-72 md:h-80 max-sm:h-full max-sm:w-28 overflow-hidden bg-[#111] p-3 max-sm:p-1 border-b-4 max-sm:border-b-0 max-sm:border-r-4 border-[#ff4500]">
           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20 pointer-events-none mix-blend-overlay z-10" />
-          
+
           <motion.div
             animate={{ scale: isHovered ? 1.1 : 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -1257,14 +1278,13 @@ function WingCard({ item, index, inView, onClick }: any) {
           >
             <ImageWithFallback
               src={item.img}
-              alt={item.name}
+              alt={menuName(item.name, lang)}
               className="w-full h-full object-cover filter contrast-125 saturate-[1.2] grayscale-[30%] group-hover:grayscale-0 transition-all duration-500"
             />
           </motion.div>
-          
+
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 z-10" />
 
-          {/* Action Overlay */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: isHovered ? 1 : 0 }}
@@ -1275,22 +1295,21 @@ function WingCard({ item, index, inView, onClick }: any) {
             animate={{ opacity: isHovered ? 1 : 0, scale: isHovered ? 1 : 0.8 }}
             className="absolute inset-0 flex items-center justify-center z-30"
           >
-            <div className="bg-black text-[#f3f4f6] px-8 py-3 border-2 border-[#ff4500] transform -skew-x-12 shadow-[6px_6px_0px_#fff]">
-              <span className="font-['Teko'] text-3xl font-extrabold uppercase tracking-widest block transform skew-x-12">
-                Order
+            <div className="bg-black text-[#f3f4f6] px-6 py-2 border-2 border-[#ff4500] transform -skew-x-12 shadow-[6px_6px_0px_#fff]">
+              <span className="font-['Teko'] text-2xl sm:text-3xl font-extrabold uppercase tracking-widest block transform skew-x-12">
+                {translate(uiCopy.order, lang)}
               </span>
             </div>
           </motion.div>
         </div>
 
-        {/* Content Container */}
-        <div className="relative p-6 pt-8 bg-black z-20 flex-1 flex flex-col">
-          <div className="flex items-start justify-between mb-4 gap-4">
-             <h3 className="font-['Anton'] text-4xl md:text-5xl text-[#e5e7eb] uppercase tracking-wide leading-tight break-words group-hover:text-[#ff4500] transition-colors drop-shadow-[3px_3px_0_rgba(230,57,70,0.8)] [text-shadow:_1px_1px_0_#000,_1px_-1px_0_#000,_-1px_1px_0_#000,_-1px_-1px_0_#000]">
-              {item.name}
+        <div className="relative p-3 sm:p-6 pt-4 sm:pt-8 bg-black z-20 flex-1 flex flex-col">
+          <div className="flex items-start justify-between mb-2 sm:mb-4 gap-2 sm:gap-4">
+            <h3 className="menu-display-title font-['Anton'] text-2xl sm:text-4xl md:text-5xl text-[#e5e7eb] uppercase tracking-wide leading-tight break-words group-hover:text-[#ff4500] transition-colors drop-shadow-[3px_3px_0_rgba(230,57,70,0.8)] [text-shadow:_1px_1px_0_#000,_1px_-1px_0_#000,_-1px_1px_0_#000,_-1px_-1px_0_#000]">
+              {menuName(item.name, lang)}
             </h3>
             {item.heat !== undefined && (
-               <div className="flex bg-[#111] p-1 border-2 border-[#333] shrink-0 transform rotate-2">
+              <div className="hidden sm:flex bg-[#111] p-1 border-2 border-[#333] shrink-0 transform rotate-2">
                 {[...Array(5)].map((_, i) => (
                   <Flame
                     key={i}
@@ -1301,17 +1320,17 @@ function WingCard({ item, index, inView, onClick }: any) {
               </div>
             )}
           </div>
-          
-          <p className="font-['Manrope'] text-sm md:text-base leading-[1.6] text-gray-400 mb-8 border-l-4 border-[#333] pl-4 italic group-hover:border-[#e63946] transition-colors line-clamp-3">
-            {item.desc}
+
+          <p className="hidden sm:block font-['Manrope'] text-sm md:text-base leading-[1.6] text-gray-400 mb-8 border-l-4 border-[#333] pl-4 italic group-hover:border-[#e63946] transition-colors line-clamp-3">
+            {menuDesc(item.name, lang) || item.desc}
           </p>
 
-          <div className="flex items-end justify-between mt-auto pt-6 border-t-4 border-dotted border-[#333]">
+          <div className="flex items-end justify-between mt-auto pt-3 sm:pt-6 border-t-4 border-dotted border-[#333]">
             <div className="flex flex-col">
-              <span className="font-['Manrope'] text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">
-                Standard Order
+              <span className="hidden sm:block font-['Manrope'] text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">
+                {translate(uiCopy.standardOrder, lang)}
               </span>
-              <span className="font-['Anton'] text-5xl font-bold bg-[#e63946] text-[#f3f4f6] px-3 border-2 border-[#ff4500] transform skew-x-[-10deg] inline-block w-fit">
+              <span className="font-['Anton'] text-3xl sm:text-5xl font-bold bg-[#e63946] text-[#f3f4f6] px-3 border-2 border-[#ff4500] transform skew-x-[-10deg] inline-block w-fit">
                 {item.variants?.[0]?.price || item.price}
               </span>
             </div>
@@ -1322,7 +1341,7 @@ function WingCard({ item, index, inView, onClick }: any) {
   );
 }
 
-function SauceCard({ sauce, index, inView }: any) {
+function SauceCard({ sauce, index, inView, lang }: any) {
   // Determine sauce color mapping based on level
   const getColors = () => {
     switch (sauce.level) {
@@ -1342,7 +1361,7 @@ function SauceCard({ sauce, index, inView }: any) {
       animate={inView ? { opacity: 1, x: 0 } : {}}
       transition={{ duration: 0.6, delay: index * 0.15 }}
       whileHover={{ scale: 1.02 }}
-      className="relative p-6 sm:p-8 border-[6px] border-black bg-[#111] group cursor-pointer transition-all flex flex-col h-full overflow-hidden"
+      className="relative p-4 sm:p-8 border-[6px] border-black bg-[#111] group cursor-pointer transition-all flex flex-col h-full overflow-hidden"
       style={{ boxShadow: `12px 12px 0px ${colors.secondary}` }}
     >
       {/* Heavy dripping paint / Splatter effect abstraction */}
@@ -1364,30 +1383,30 @@ function SauceCard({ sauce, index, inView }: any) {
         {sauce.icon}
       </div>
 
-      <div className="mb-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 relative z-10">
+      <div className="mb-6 sm:mb-10 flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-4 relative z-10">
         <span 
-          className="font-['Manrope'] text-lg sm:text-xl font-extrabold text-black tracking-[0.2em] uppercase px-4 py-1 border-2 border-black w-fit transform -skew-x-[15deg] shadow-[4px_4px_0px_#000]"
+          className="font-['Manrope'] text-sm sm:text-xl font-extrabold text-black tracking-[0.2em] uppercase px-3 sm:px-4 py-1 border-2 border-black w-fit transform -skew-x-[15deg] shadow-[4px_4px_0px_#000]"
           style={{ backgroundColor: colors.secondary }}
         >
-          {sauce.level}
+          {sauceLevel(sauce.level, lang)}
         </span>
-        <span className="font-['Manrope'] text-xs font-bold text-gray-400 tracking-[0.5em] uppercase border-b-2 border-dashed border-gray-700 pb-1">BOTTLE NO. {index + 1}</span>
+        <span className="font-['Manrope'] text-[10px] sm:text-xs font-bold text-gray-400 tracking-[0.3em] sm:tracking-[0.5em] uppercase border-b-2 border-dashed border-gray-700 pb-1">{translate(uiCopy.bottleNo, lang)} {index + 1}</span>
       </div>
 
-      <h3 className="font-['Anton'] text-5xl sm:text-6xl lg:text-7xl uppercase tracking-tighter text-[#f3f4f6] mb-4 transition-colors leading-[0.8] break-words relative z-10 drop-shadow-[5px_5px_0_#000]">
+      <h3 className="font-['Anton'] text-3xl sm:text-6xl lg:text-7xl uppercase tracking-tighter text-[#f3f4f6] mb-3 sm:mb-4 transition-colors leading-[0.8] break-words relative z-10 drop-shadow-[5px_5px_0_#000]">
         {sauce.name}
       </h3>
 
-      <p className="font-['Manrope'] text-sm sm:text-lg text-gray-300 mb-10 w-full sm:w-[80%] relative z-10 leading-relaxed font-semibold italic border-l-4 pl-4" style={{ borderColor: colors.secondary }}>
-        "{sauce.desc}"
+      <p className="font-['Manrope'] text-xs sm:text-lg text-gray-300 mb-6 sm:mb-10 w-full sm:w-[80%] relative z-10 leading-relaxed font-semibold italic border-l-4 pl-3 sm:pl-4" style={{ borderColor: colors.secondary }}>
+        "{sauceDescription(sauce.name, lang) || sauce.desc}"
       </p>
 
-      <div className="flex flex-wrap gap-2 sm:gap-4 mt-auto relative z-10">
+      <div className="flex flex-wrap gap-1.5 sm:gap-4 mt-auto relative z-10">
         {sauce.peppers.map((pepper: string) => (
           <motion.span
             key={pepper}
             whileHover={{ scale: 1.05 }}
-            className="px-3 py-1.5 sm:px-4 sm:py-2 bg-black border-2 text-[10px] sm:text-xs font-['Manrope'] font-bold text-[#f3f4f6] uppercase tracking-wider transition-colors cursor-default"
+            className="px-2 py-1 sm:px-4 sm:py-2 bg-black border-2 text-[9px] sm:text-xs font-['Manrope'] font-bold text-[#f3f4f6] uppercase tracking-wider transition-colors cursor-default"
             style={{ borderColor: colors.secondary }}
           >
             {pepper}
